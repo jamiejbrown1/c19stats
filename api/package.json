@@ -1,0 +1,20 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "func start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "axios": "^0.20.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@types/jest": "^26.0.13",
+    "babel-jest": "^26.3.0",
+    "jest": "^26.4.2",
+    "jest-mock-axios": "^4.2.1"
+  }
+}
