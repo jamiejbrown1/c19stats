@@ -9,6 +9,8 @@ import Divider from '@material-ui/core/Divider';
 import MetricWidget from '../components/MetricWidget';
 import { getCountries, getStats } from './StatsApi';
 import CountrySelect from '../components/CountrySelect';
+import logo from '../resources/logo.svg';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 const globalSelection = {
     Country: 'Global',
@@ -102,7 +104,10 @@ export default function Stats() {
     return (
         <Box className={classes.root}>
             <Box className={classes.titleContainer}>
-                <Typography className={`${classes.titleLeft} animate__animated animate__fadeInLeft`}>{t('COV19')}</Typography>
+                <Typography className={`${classes.titleLeft} animate__animated animate__fadeInLeft`}>
+                    <img src={logo} height={35} width={50} alt="" />
+                    {t('COV19')}
+                </Typography>
                 <Divider className={classes.titleDivider} flexItem orientation="vertical" />
                 <Typography className={`${classes.titleRight} animate__animated animate__fadeInRight`}>{t('Stats')}</Typography>
             </Box>
