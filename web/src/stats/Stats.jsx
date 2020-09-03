@@ -4,10 +4,15 @@ import { useTranslation } from 'react-i18next';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import MetricWidget from '../components/MetricWidget';
-import { getStats } from './StatsApi';
-import CountrySelect, { globalSelection } from './CountrySelect';
 import { useSnackbar } from 'material-ui-snackbar-provider';
+import MetricWidget from '../components/MetricWidget';
+import { getCountries, getStats } from './StatsApi';
+import CountrySelect from '../components/CountrySelect';
+
+const globalSelection = {
+    Country: 'Global',
+    Slug: 'global',
+};
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Stats() {
     const [stats, setStats] = useState({});
+    const [countries, setCountries] = useState([globalSelection]);
     const [selectedCountry, setSelectedCountry] = useState(globalSelection);
     const [loading, setLoading] = useState(true);
     const { t } = useTranslation();
@@ -44,7 +50,7 @@ export default function Stats() {
                 const res = await getStats(country);
                 setStats(res);
             } catch (err) {
-                snackbar.showMessage(t('Failed to load data'))
+                snackbar.showMessage(t('Failed to load Stats'));
             } finally {
                 setLoading(false);
             }
@@ -52,10 +58,26 @@ export default function Stats() {
         fetchStats(selectedCountry.Slug);
     }, [selectedCountry, snackbar, t]);
 
+    useEffect(() => {
+        async function fetchCountries() {
+            try {
+                const res = await getCountries();
+                setCountries([globalSelection, ...res]);
+            } catch (err) {
+                snackbar.showMessage(t('Failed to load Countries'));
+            }
+        }
+        fetchCountries();
+    }, [snackbar, t]);
+
     return (
         <Box className={classes.root}>
             <Typography variant="h3" className={classes.title}>{t('Coronavirus Statistics')}</Typography>
-            <CountrySelect selected={selectedCountry} onSelect={setSelectedCountry} />
+            <CountrySelect
+                countries={countries}
+                selected={selectedCountry}
+                onSelect={setSelectedCountry}
+            />
             <Grid container justify="space-evenly" spacing={2}>
                 <Grid item>
                     <MetricWidget

@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.20.0",
     "i18next": "^19.7.0",
     "i18next-browser-languagedetector": "^6.0.1",
     "material-ui-snackbar-provider": "^1.4.0",
@@ -71,6 +72,7 @@
     "eslint-plugin-jsx-a11y": "6.3.0",
     "eslint-plugin-react": "7.20.0",
     "eslint-plugin-react-hooks": "4.0.0",
-    "jest-enzyme": "^7.1.2"
+    "jest-enzyme": "^7.1.2",
+    "jest-mock-axios": "^4.2.1"
   }
 }

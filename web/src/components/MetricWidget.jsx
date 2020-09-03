@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import SingleMetric from './SingleMetric';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import SingleMetric from './SingleMetric';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -44,15 +44,15 @@ export default function MetricWidget(props) {
                 {title}
             </Typography>
 
-                    <Box className={classes.metrics}>
-                        { loading ? <CircularProgress /> : (
-                            <>
-                                <SingleMetric data-testid="total-metric" name={t('Total')} value={total} />
-                                <Divider flexItem orientation="vertical" />
-                                <SingleMetric data-testid="daily-metric" name={t('Today')} value={today} />
-                            </>
-                        )}
-                    </Box>
+            <Box className={classes.metrics}>
+                { loading ? <CircularProgress /> : (
+                    <>
+                        <SingleMetric data-testid="total-metric" name={t('Total')} value={total} />
+                        <Divider flexItem orientation="vertical" />
+                        <SingleMetric data-testid="daily-metric" name={t('Today')} value={today} />
+                    </>
+                )}
+            </Box>
         </Paper>
     );
 }

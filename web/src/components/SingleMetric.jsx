@@ -14,8 +14,8 @@ const useStyles = makeStyles(() => ({
         alignItems: 'center',
     },
     metricText: {
-        margin: '8px 0'
-    }
+        margin: '8px 0',
+    },
 }));
 
 export default function SingleMetric(props) {
