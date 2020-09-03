@@ -10,7 +10,7 @@ import { useSnackbar } from 'material-ui-snackbar-provider';
 const useStyles = makeStyles(() => ({
     root: {
         width: '300px',
-        height: '60px',
+        height: '100px',
     },
 }));
 
@@ -26,14 +26,17 @@ export default function CountrySelect(props) {
     const { t } = useTranslation();
     const snackbar = useSnackbar();
 
-    useEffect(async () => {
-        try {
-            const res = await getCountries();
-            setCountries([globalSelection, ...res]);
-        } catch (err) {
-            snackbar.showMessage(t('Failed to load data'))
+    useEffect(() => {
+        async function fetchCountries() {
+            try {
+                const res = await getCountries();
+                setCountries([globalSelection, ...res]);
+            } catch (err) {
+                snackbar.showMessage(t('Failed to load data'))
+            }
         }
-    }, []);
+        fetchCountries();
+    }, [snackbar, t]);
 
     return (
         <Autocomplete
@@ -45,12 +48,22 @@ export default function CountrySelect(props) {
             options={countries}
             getOptionLabel={(option) => option.Country}
             className={classes.root}
-            renderInput={(params) => <TextField {...params} label={t('Country')} />}
+            renderInput={(params) =>
+                <TextField
+                    {...params}
+                    inputProps={{ ...params.inputProps, style: {fontSize: '30px'}}}
+                    InputLabelProps={{ ...params.InputLabelProps, style: {fontSize: '28px'}}}
+                    label={t('Country')}
+                />
+            }
         />
     );
 }
 
 CountrySelect.propTypes = {
-    selected: PropTypes.string.isRequired,
+    selected: PropTypes.shape({
+        Country: PropTypes.string,
+        Slug: PropTypes.string,
+    }).isRequired,
     onSelect: PropTypes.func.isRequired,
 };

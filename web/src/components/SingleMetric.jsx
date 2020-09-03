@@ -13,6 +13,9 @@ const useStyles = makeStyles(() => ({
         justifyContent: 'space-around',
         alignItems: 'center',
     },
+    metricText: {
+        margin: '8px 0'
+    }
 }));
 
 export default function SingleMetric(props) {
@@ -21,8 +24,8 @@ export default function SingleMetric(props) {
 
     return (
         <Box className={classes.root}>
-            <Typography data-testid="metric-name" variant="h4">{name}</Typography>
-            <Typography data-testid="metric-value" variant="h5">{abbreviate(value)}</Typography>
+            <Typography className={classes.metricText} data-testid="metric-name" variant="h4">{name}</Typography>
+            <Typography className={classes.metricText} data-testid="metric-value" variant="h5">{abbreviate(value)}</Typography>
         </Box>
     );
 }

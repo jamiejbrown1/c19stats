@@ -37,21 +37,20 @@ export default function Stats() {
     const snackbar = useSnackbar();
     const classes = useStyles();
 
-    async function fetchStats(country) {
-        try {
-            setLoading(true);
-            const res = await getStats(country);
-            setStats(res);
-        } catch (err) {
-            snackbar.showMessage(t('Failed to load data'))
-        } finally {
-            setLoading(false);
-        }
-    }
-
     useEffect(() => {
+        async function fetchStats(country) {
+            try {
+                setLoading(true);
+                const res = await getStats(country);
+                setStats(res);
+            } catch (err) {
+                snackbar.showMessage(t('Failed to load data'))
+            } finally {
+                setLoading(false);
+            }
+        }
         fetchStats(selectedCountry.Slug);
-    }, [selectedCountry]);
+    }, [selectedCountry, snackbar, t]);
 
     return (
         <Box className={classes.root}>

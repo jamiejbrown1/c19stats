@@ -25,6 +25,8 @@ const useStyles = makeStyles(() => ({
         height: '40%',
         width: '100%',
         display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 }));
 
@@ -41,26 +43,30 @@ export default function MetricWidget(props) {
             <Typography data-testid="title" variant="h3" className={classes.title}>
                 {title}
             </Typography>
-            { loading ? <CircularProgress /> : (
-                <>
+
                     <Box className={classes.metrics}>
-                        <SingleMetric data-testid="total-metric" name={t('Total')} value={total} />
-                        <Divider flexItem orientation="vertical" />
-                        <SingleMetric data-testid="daily-metric" name={t('Today')} value={today} />
+                        { loading ? <CircularProgress /> : (
+                            <>
+                                <SingleMetric data-testid="total-metric" name={t('Total')} value={total} />
+                                <Divider flexItem orientation="vertical" />
+                                <SingleMetric data-testid="daily-metric" name={t('Today')} value={today} />
+                            </>
+                        )}
                     </Box>
-                </>
-            )}
         </Paper>
     );
 }
 
 MetricWidget.propTypes = {
-    title: PropTypes.string.isRequired,
-    total: PropTypes.number.isRequired,
-    today: PropTypes.number.isRequired,
+    title: PropTypes.string,
+    total: PropTypes.number,
+    today: PropTypes.number,
     loading: PropTypes.bool,
 };
 
 MetricWidget.defaultProps = {
+    title: null,
+    total: null,
+    today: null,
     loading: false,
 };
