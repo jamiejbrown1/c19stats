@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import MetricWidget from '../components/MetricWidget';
 import { getStats } from './StatsApi';
 import CountrySelect, { globalSelection } from './CountrySelect';
+import { useSnackbar } from 'material-ui-snackbar-provider';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,6 +34,7 @@ export default function Stats() {
     const [selectedCountry, setSelectedCountry] = useState(globalSelection);
     const [loading, setLoading] = useState(true);
     const { t } = useTranslation();
+    const snackbar = useSnackbar();
     const classes = useStyles();
 
     async function fetchStats(country) {
@@ -41,7 +43,7 @@ export default function Stats() {
             const res = await getStats(country);
             setStats(res);
         } catch (err) {
-
+            snackbar.showMessage(t('Failed to load data'))
         } finally {
             setLoading(false);
         }

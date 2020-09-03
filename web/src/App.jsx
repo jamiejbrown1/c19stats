@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Stats from './stats/Stats';
 import theme from './theme';
 import i18n from './i18n/i18n';
+import SnackbarProvider from 'material-ui-snackbar-provider/lib/SnackbarProvider';
 
 const useStyles = makeStyles(() => ({
     app: {
@@ -18,9 +19,11 @@ function App() {
     return (
         <I18nextProvider i18n={i18n}>
             <ThemeProvider theme={theme}>
-                <Box className={classes.app}>
-                    <Stats />
-                </Box>
+                <SnackbarProvider>
+                    <Box className={classes.app}>
+                        <Stats />
+                    </Box>
+                </SnackbarProvider>
             </ThemeProvider>
         </I18nextProvider>
     );

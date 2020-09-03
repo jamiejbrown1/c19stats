@@ -6,5 +6,6 @@ export default {
         Deaths: 'Deaths',
         Recovered: 'Recovered',
         Country: 'Country',
+        'Failed to load data': 'Failed to load data',
     },
 };

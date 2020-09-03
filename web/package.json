@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^7.1.2",
     "i18next": "^19.7.0",
     "i18next-browser-languagedetector": "^6.0.1",
+    "material-ui-snackbar-provider": "^1.4.0",
     "number-abbreviate": "^2.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",

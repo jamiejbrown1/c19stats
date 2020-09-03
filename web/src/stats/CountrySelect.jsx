@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { getCountries } from './StatsApi';
+import { useSnackbar } from 'material-ui-snackbar-provider';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -23,13 +24,14 @@ export default function CountrySelect(props) {
     const [countries, setCountries] = useState([globalSelection]);
     const classes = useStyles();
     const { t } = useTranslation();
+    const snackbar = useSnackbar();
 
     useEffect(async () => {
         try {
             const res = await getCountries();
             setCountries([globalSelection, ...res]);
         } catch (err) {
-
+            snackbar.showMessage(t('Failed to load data'))
         }
     }, []);
 
