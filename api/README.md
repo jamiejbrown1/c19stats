@@ -1,6 +1,13 @@
 # C19 Stats Serverless Functions
 
 ### Prerequisites
+Ensure node & npm are installed
+
+Install yarn
+
+```
+npm install -g yarn
+```
 
 To run functions locally you will need to install the [Azure Function Core Tools](https://www.npmjs.com/package/azure-functions-core-tools)
 
@@ -62,7 +69,7 @@ Returns Coronavirus statistics for the fiven country
 
 #### Stats
 
-Returns a list of countries which can be used to query for statistics
+Returns an alphabetized list of countries which can be used to query for statistics
 * **URL**
 
     `/countries`
@@ -77,14 +84,14 @@ Returns a list of countries which can be used to query for statistics
     ```
     [ 
         {
-            Country: "Turkey",
-            Slug: "turkey",
-            ISO2: "TR"
-        },
-        {
             Country: "Cuba",
             Slug: "cuba",
             ISO2: "CU"
+        },
+        {
+            Country: "Turkey",
+            Slug: "turkey",
+            ISO2: "TR"
         },
         ...
     ]
