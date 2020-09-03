@@ -5,14 +5,23 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { useSnackbar } from 'material-ui-snackbar-provider';
+import Divider from '@material-ui/core/Divider';
 import MetricWidget from '../components/MetricWidget';
 import { getCountries, getStats } from './StatsApi';
 import CountrySelect from '../components/CountrySelect';
-import Divider from '@material-ui/core/Divider';
 
 const globalSelection = {
     Country: 'Global',
     Slug: 'global',
+};
+
+const emptyStats = {
+    TotalConfirmed: 0,
+    NewConfirmed: 0,
+    TotalDeaths: 0,
+    NewDeaths: 0,
+    TotalRecovered: 0,
+    NewRecovered: 0,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -21,11 +30,12 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        width: '100%',
         minHeight: '100%',
         backgroundColor: theme.palette.background.default,
     },
     titleContainer: {
-        margin: '20px',
+        margin: theme.spacing(3),
         display: 'flex',
     },
     titleLeft: {
@@ -39,12 +49,12 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.primary,
     },
     titleDivider: {
-        margin: '0 5px',
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
     },
-    widgets: {
-        display: 'flex',
-        width: '100%',
-        justifyContent: 'space-around',
+    metrics: {
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2),
     },
 }));
 
@@ -64,7 +74,12 @@ export default function Stats() {
                 const res = await getStats(country);
                 setStats(res);
             } catch (err) {
-                snackbar.showMessage(t('Failed to load Stats'));
+                if (err.response.status === 404) {
+                    snackbar.showMessage(t('No stats found for', { country: selectedCountry.Country }));
+                    setStats(emptyStats);
+                } else {
+                    snackbar.showMessage(t('Failed to load Stats'));
+                }
             } finally {
                 setLoading(false);
             }
@@ -96,7 +111,7 @@ export default function Stats() {
                 selected={selectedCountry}
                 onSelect={setSelectedCountry}
             />
-            <Grid container justify="space-evenly" spacing={2}>
+            <Grid container justify="space-evenly" spacing={2} className={classes.metrics}>
                 <Grid item>
                     <MetricWidget
                         title={t('Cases')}

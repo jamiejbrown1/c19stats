@@ -13,6 +13,7 @@ import 'typeface-roboto';
 const useStyles = makeStyles(() => ({
     app: {
         height: '100vh',
+        overflowX: 'hidden',
     },
 }));
 
