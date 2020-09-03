@@ -1,5 +1,9 @@
 # C19 Stats Serverless Functions
 
+### Prerequisites
+
+To run functions locally you will need to install the [Azure Function Core Tools](https://www.npmjs.com/package/azure-functions-core-tools)
+
 #### To install dependencies
 ```
 yarn install

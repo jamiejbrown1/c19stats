@@ -1,5 +1,13 @@
 ## C19 Stats UI
 
+### Prerequisites
+Ensure node & npm are installed
+
+Install yarn
+```
+npm install -g yarn
+```
+
 #### To install dependencies
 ```
 yarn install
@@ -10,10 +18,12 @@ yarn install
 yarn test
 ```
 
-#### To run local dev server
+#### To run ui on local dev server
 ```
 yarn start
 ```
+
+UI will be available on http://localhost:3000
 
 ### To build
 ```
