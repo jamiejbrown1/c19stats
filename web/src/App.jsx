@@ -3,10 +3,12 @@ import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import { I18nextProvider } from 'react-i18next';
 import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import SnackbarProvider from 'material-ui-snackbar-provider/lib/SnackbarProvider';
 import Stats from './stats/Stats';
 import theme from './theme';
 import i18n from './i18n/i18n';
-import SnackbarProvider from 'material-ui-snackbar-provider/lib/SnackbarProvider';
+import 'animate.css/animate.min.css';
+import 'typeface-roboto';
 
 const useStyles = makeStyles(() => ({
     app: {

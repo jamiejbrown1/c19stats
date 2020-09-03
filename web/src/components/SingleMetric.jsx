@@ -23,7 +23,7 @@ export default function SingleMetric(props) {
     const classes = useStyles();
 
     return (
-        <Box className={classes.root}>
+        <Box className={`${classes.root} animate__animated animate__bounceIn`}>
             <Typography className={classes.metricText} data-testid="metric-name" variant="h4">{name}</Typography>
             <Typography className={classes.metricText} data-testid="metric-value" variant="h5">{abbreviate(value)}</Typography>
         </Box>

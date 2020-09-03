@@ -20,6 +20,7 @@ const useStyles = makeStyles(() => ({
     },
     title: {
         height: '30%',
+        fontWeight: 300,
     },
     metrics: {
         height: '40%',
@@ -38,9 +39,9 @@ export default function MetricWidget(props) {
     const classes = useStyles();
 
     return (
-        <Paper className={classes.root}>
+        <Paper elevation={4} className={classes.root}>
 
-            <Typography data-testid="title" variant="h3" className={classes.title}>
+            <Typography color="primary" data-testid="title" variant="h3" className={classes.title}>
                 {title}
             </Typography>
 

@@ -8,6 +8,7 @@ import { useSnackbar } from 'material-ui-snackbar-provider';
 import MetricWidget from '../components/MetricWidget';
 import { getCountries, getStats } from './StatsApi';
 import CountrySelect from '../components/CountrySelect';
+import Divider from '@material-ui/core/Divider';
 
 const globalSelection = {
     Country: 'Global',
@@ -23,9 +24,22 @@ const useStyles = makeStyles((theme) => ({
         minHeight: '100%',
         backgroundColor: theme.palette.background.default,
     },
-    title: {
+    titleContainer: {
         margin: '20px',
+        display: 'flex',
+    },
+    titleLeft: {
+        fontSize: '46px',
+        fontWeight: 500,
+        color: theme.palette.primary.main,
+    },
+    titleRight: {
+        fontSize: '46px',
+        fontWeight: 300,
         color: theme.palette.text.primary,
+    },
+    titleDivider: {
+        margin: '0 5px',
     },
     widgets: {
         display: 'flex',
@@ -72,7 +86,11 @@ export default function Stats() {
 
     return (
         <Box className={classes.root}>
-            <Typography variant="h3" className={classes.title}>{t('Coronavirus Statistics')}</Typography>
+            <Box className={classes.titleContainer}>
+                <Typography className={`${classes.titleLeft} animate__animated animate__fadeInLeft`}>{t('COV19')}</Typography>
+                <Divider className={classes.titleDivider} flexItem orientation="vertical" />
+                <Typography className={`${classes.titleRight} animate__animated animate__fadeInRight`}>{t('Stats')}</Typography>
+            </Box>
             <CountrySelect
                 countries={countries}
                 selected={selectedCountry}
