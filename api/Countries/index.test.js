@@ -1,26 +1,32 @@
 import mockAxios from 'jest-mock-axios';
 import Countries from './index';
-import Stats from '../Stats';
 
 const testCountries = [
     {
-        Country: "Togo",
-        Slug: "togo",
-        ISO2: "TG"
+        Country: 'Togo',
+        Slug: 'togo',
+        ISO2: 'TG',
     },
     {
-        Country: "Zimbabwe",
-        Slug: "zimbabwe",
-        ISO2: "ZW"
+        Country: 'Zimbabwe',
+        Slug: 'zimbabwe',
+        ISO2: 'ZW',
     },
     {
-        Country: "Libya",
-        Slug: "libya",
-        ISO2: "LY"
+        Country: 'Libya',
+        Slug: 'libya',
+        ISO2: 'LY',
     },
 ];
 
+const log = { error: jest.fn() };
+
 describe('Countries function tests', () => {
+    let context;
+
+    beforeEach(() => {
+        context = { log };
+    });
 
     afterEach(() => {
         mockAxios.reset();
@@ -28,13 +34,11 @@ describe('Countries function tests', () => {
     });
 
     it('should return data from third party api', async () => {
-        const context = {};
         const promise = Countries(context);
-
         const responseObj = {
             status: 200,
             statusText: 'OK',
-            data: testCountries
+            data: testCountries,
         };
 
         expect(mockAxios.get).toHaveBeenCalled();
@@ -43,37 +47,37 @@ describe('Countries function tests', () => {
         expect(context.res).toEqual({
             status: 200,
             statusText: 'OK',
-            body: testCountries
+            body: testCountries,
         });
     });
 
     it('should return any error response received', async () => {
-        const context = {};
         const promise = Countries(context);
         const errResponse = {
             response: {
                 status: 400,
                 statusText: 'Oh no!',
-            }
+            },
         };
         expect(mockAxios.get).toHaveBeenCalled();
         mockAxios.mockError(errResponse);
         await promise;
+        expect(log.error).toHaveBeenCalled();
         expect(context.res).toEqual(errResponse.response);
     });
 
     it('should return 500 for any other request errors', async () => {
-        const context = {};
         const promise = Countries(context);
         const errResponse = {
-            message: "Something went wrong"
+            message: 'Something went wrong',
         };
         expect(mockAxios.get).toHaveBeenCalled();
         mockAxios.mockError(errResponse);
         await promise;
+        expect(log.error).toHaveBeenCalled();
         expect(context.res).toEqual({
             status: 500,
-            statusText: errResponse.message
+            statusText: errResponse.message,
         });
     });
 });

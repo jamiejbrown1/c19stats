@@ -6,6 +6,18 @@
     "start": "func start --javascript",
     "test": "jest"
   },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "env": {
+      "jest": true
+    },
+    "rules": {
+      "indent": [
+        "error",
+        4
+      ]
+    }
+  },
   "dependencies": {
     "axios": "^0.20.0"
   },
@@ -14,6 +26,9 @@
     "@babel/preset-env": "^7.11.5",
     "@types/jest": "^26.0.13",
     "babel-jest": "^26.3.0",
+    "eslint": "7.2.0",
+    "eslint-config-airbnb-base": "14.2.0",
+    "eslint-plugin-import": "2.21.2",
     "jest": "^26.4.2",
     "jest-mock-axios": "^4.2.1"
   }

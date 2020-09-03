@@ -8,7 +8,7 @@
  */
 const getCountryStats = (country, stats) => {
     if (!country || country === 'global') {
-        return {...stats.Global, Date: stats.Date}
+        return { ...stats.Global, Date: stats.Date };
     }
 
     const countryStats = stats.Countries.find((c) => country === c.Slug);
@@ -22,7 +22,7 @@ const getCountryStats = (country, stats) => {
             NewRecovered: countryStats.NewRecovered,
             TotalRecovered: countryStats.TotalRecovered,
             Date: countryStats.Date,
-        }
+        };
     }
     return null;
 };
