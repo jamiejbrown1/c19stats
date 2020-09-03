@@ -3,19 +3,14 @@ import Countries from './index';
 
 const testCountries = [
     {
-        Country: 'Togo',
-        Slug: 'togo',
-        ISO2: 'TG',
-    },
-    {
         Country: 'Zimbabwe',
         Slug: 'zimbabwe',
         ISO2: 'ZW',
     },
     {
-        Country: 'Libya',
-        Slug: 'libya',
-        ISO2: 'LY',
+        Country: 'Togo',
+        Slug: 'togo',
+        ISO2: 'TG',
     },
 ];
 
@@ -38,7 +33,7 @@ describe('Countries function tests', () => {
         const responseObj = {
             status: 200,
             statusText: 'OK',
-            data: testCountries,
+            data: testCountries.slice(),
         };
 
         expect(mockAxios.get).toHaveBeenCalled();
@@ -47,7 +42,7 @@ describe('Countries function tests', () => {
         expect(context.res).toEqual({
             status: 200,
             statusText: 'OK',
-            body: testCountries,
+            body: [testCountries[1], testCountries[0]],
         });
     });
 
