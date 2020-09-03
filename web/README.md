@@ -1,4 +1,4 @@
-## C19 Stats UI
+## COV|19 Stats UI
 
 ### Prerequisites
 Ensure node & npm are installed

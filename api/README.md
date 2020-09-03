@@ -1,4 +1,4 @@
-# C19 Stats Serverless Functions
+# COV19 Stats Serverless Functions
 
 ### Prerequisites
 Ensure node & npm are installed
